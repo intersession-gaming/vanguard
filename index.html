@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vanguard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black:      #0a0a0a;
+      --deep:       #111111;
+      --surface:    #181818;
+      --border:     #2a2a2a;
+      --gold:       #c9a84c;
+      --gold-light: #e2c97e;
+      --gold-dim:   #7a6130;
+      --text:       #d4c9b0;
+      --text-muted: #7a7060;
+      --white:      #f0ead8;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--black);
+      color: var(--text);
+      font-family: 'Crimson Text', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ── Noise texture overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* ── Layout ── */
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    section {
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section:last-child { border-bottom: none; }
+
+    /* ── Header ── */
+    header {
+      position: relative;
+      z-index: 1;
+      padding: 6rem 0 5rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .guild-name {
+      font-family: 'Cinzel', serif;
+      font-weight: 900;
+      font-size: clamp(3rem, 10vw, 6rem);
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      text-shadow: 0 0 60px rgba(201, 168, 76, 0.2);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .guild-sub {
+      font-family: 'Cinzel', serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.4em;
+      color: var(--gold-dim);
+      text-transform: uppercase;
+    }
+
+    .divider {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+      margin: 2rem auto;
+    }
+
+    .tagline {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    /* ── Section headings ── */
+    h2 {
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+    }
+
+    h3 {
+      font-family: 'Cinzel', serif;
+      font-weight: 400;
+      font-size: 1rem;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+
+    p { margin-bottom: 1rem; }
+    p:last-child { margin-bottom: 0; }
+
+    /* ── About ── */
+    .about-text {
+      font-size: 1.15rem;
+      color: var(--text);
+    }
+
+    /* ── Roles ── */
+    .roles-grid {
+      display: grid;
+      gap: 0;
+    }
+
+    .role-row {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 1.5rem;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+
+    .role-row:last-child { border-bottom: none; }
+
+    .role-left { }
+
+    .role-name {
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      color: var(--gold-light);
+      font-weight: 600;
+    }
+
+    .role-bracket {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    .role-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ── Rules ── */
+    .rules-block {
+      margin-bottom: 2.5rem;
+    }
+
+    .rules-block:last-child { margin-bottom: 0; }
+
+    .rules-block h3 {
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 0.75rem;
+    }
+
+    .rules-block ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .rules-block ul li {
+      padding: 0.4rem 0 0.4rem 1.25rem;
+      position: relative;
+      font-size: 1rem;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .rules-block ul li:last-child { border-bottom: none; }
+
+    .rules-block ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold-dim);
+    }
+
+    /* ── FAQ ── */
+    .faq-item {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-item:last-child { border-bottom: none; }
+
+    .faq-q {
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .faq-a {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── Recruitment blurb ── */
+    .blurb-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold-dim);
+      padding: 1.75rem 2rem;
+      position: relative;
+    }
+
+    .blurb-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 1rem;
+    }
+
+    .blurb-text {
+      font-size: 1rem;
+      color: var(--text);
+      line-height: 1.7;
+      white-space: pre-line;
+    }
+
+    /* ── Footer ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 3rem 0;
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── Fade-in on load ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    header, section {
+      animation: fadeUp 0.6s ease both;
+    }
+
+    section:nth-child(2) { animation-delay: 0.1s; }
+    section:nth-child(3) { animation-delay: 0.2s; }
+    section:nth-child(4) { animation-delay: 0.3s; }
+    section:nth-child(5) { animation-delay: 0.4s; }
+    section:nth-child(6) { animation-delay: 0.5s; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <div class="guild-name">Vanguard</div>
+      <div class="guild-sub">World of Warcraft &middot; Cross-Faction</div>
+      <div class="divider"></div>
+      <p class="tagline">A casual home for veterans and newcomers alike. No pressure, no drama — just the game.</p>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <section id="about">
+      <h2>About</h2>
+      <p class="about-text">Vanguard has Horde roots going back to Frostwolf, but the guild is now home to players of both factions. We're a social and leveling guild — relaxed, welcoming, and built around people who like having a community behind them without the demands of a progression guild. Whether you're returning after years away or just looking for a low-key place to land, you're welcome here.</p>
+    </section>
+
+    <section id="roles">
+      <h2>Roles</h2>
+      <div class="roles-grid">
+
+        <div class="role-row">
+          <div class="role-left">
+            <div class="role-name">Legatus</div>
+            <div class="role-bracket">Guild Master</div>
+          </div>
+          <div class="role-desc">Guild leadership. Handles recruitment, structure, and final decisions.</div>
+        </div>
+
+        <div class="role-row">
+          <div class="role-left">
+            <div class="role-name">Praetor</div>
+            <div class="role-bracket">Co-Lead</div>
+          </div>
+          <div class="role-desc">Trusted leadership. Acts on behalf of the Legatus when needed.</div>
+        </div>
+
+        <div class="role-row">
+          <div class="role-left">
+            <div class="role-name">Centurion</div>
+            <div class="role-bracket">Officer</div>
+          </div>
+          <div class="role-desc">Active officers who help keep the guild running day to day.</div>
+        </div>
+
+        <div class="role-row">
+          <div class="role-left">
+            <div class="role-name">Tribunus</div>
+            <div class="role-bracket">Officer Alt</div>
+          </div>
+          <div class="role-desc">Officer-rank alts. Same trust, different character.</div>
+        </div>
+
+        <div class="role-row">
+          <div class="role-left">
+            <div class="role-name">Evocatus</div>
+            <div class="role-bracket">Returning Veteran</div>
+          </div>
+          <div class="role-desc">Reserved for players who were part of Vanguard in a previous era and have come back. If you were here before, this rank is yours.</div>
+        </div>
+
+        <div class="role-row">
+          <div class="role-left">
+            <div class="role-name">Initiate</div>
+            <div class="role-bracket">Member</div>
+          </div>
+          <div class="role-desc">Full members of the guild.</div>
+        </div>
+
+        <div class="role-row">
+          <div class="role-left">
+            <div class="role-name">Recruit</div>
+            <div class="role-bracket">New Member</div>
+          </div>
+          <div class="role-desc">Fresh to the guild. Just getting settled in.</div>
+        </div>
+
+        <div class="role-row">
+          <div class="role-left">
+            <div class="role-name">Envoy</div>
+            <div class="role-bracket">Visitor</div>
+          </div>
+          <div class="role-desc">Guests and friends of the guild. Not full members, but welcome here.</div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="rules">
+      <h2>Rules</h2>
+
+      <div class="rules-block">
+        <h3>Conduct</h3>
+        <ul>
+          <li>Treat guildmates with respect. We're here to have fun, not to be the fun police — but harassment, slurs, and sustained negativity aren't welcome.</li>
+          <li>Drama stays out of guild chat. Handle personal conflicts privately.</li>
+        </ul>
+      </div>
+
+      <div class="rules-block">
+        <h3>Activity</h3>
+        <ul>
+          <li>No hard attendance requirements. Real life comes first.</li>
+          <li>If you're going inactive for a while, give us a heads up so we don't remove you by accident.</li>
+        </ul>
+      </div>
+
+      <div class="rules-block">
+        <h3>Grouping</h3>
+        <ul>
+          <li>You're never obligated to join a group, but if you sign up, show up.</li>
+          <li>Help when you can. Nobody's keeping score, but a guild is a community.</li>
+        </ul>
+      </div>
+
+    </section>
+
+    <section id="faq">
+      <h2>FAQ</h2>
+
+      <div class="faq-item">
+        <div class="faq-q">How do I join?</div>
+        <div class="faq-a">Whisper any online officer in-game, or reach out through our Discord. We don't have an application process — just say hello.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Is there a required activity level?</div>
+        <div class="faq-a">No. Play as much or as little as you want. We only ask that you give us a heads up if you're going to be away for an extended period.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">I used to be in Vanguard years ago. Do I have to start over?</div>
+        <div class="faq-a">No. Returning members are recognized with the Evocatus rank. Just let an officer know who you are.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Alliance or Horde?</div>
+        <div class="faq-a">Both. Vanguard is cross-faction. The guild has Horde roots but you're welcome regardless of what you play.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Is there a Discord?</div>
+        <div class="faq-a">Yes. Link coming soon.</div>
+      </div>
+
+    </section>
+
+    <section id="recruitment">
+      <h2>Recruitment</h2>
+      <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem;">Copy and paste this into the in-game Guild Finder or trade chat.</p>
+      <div class="blurb-box">
+        <div class="blurb-label">Guild Ad</div>
+        <div class="blurb-text">⚔ VANGUARD is recruiting ⚔
+
+Casual/social guild with Horde roots, now cross-faction. No raid requirements, no drama, no pressure — just a solid community to play alongside.
+
+Whether you're new to the server, returning after a break, or just tired of playing solo, we have a place for you. Former Vanguard members are especially welcome back.
+
+Whisper any online officer or visit [YOUR DISCORD LINK] for more info.</div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <div class="container">
+      Vanguard &mdash; World of Warcraft
+    </div>
+  </footer>
+
+</body>
+</html>
