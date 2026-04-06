@@ -1,28 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vanguard</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap"
+    rel="stylesheet">
   <style>
     :root {
-      --black:      #0a0a0a;
-      --deep:       #111111;
-      --surface:    #181818;
-      --border:     #2a2a2a;
-      --gold:       #c9a84c;
+      --black: #0a0a0a;
+      --deep: #111111;
+      --surface: #181818;
+      --border: #2a2a2a;
+      --gold: #c9a84c;
       --gold-light: #e2c97e;
-      --gold-dim:   #7a6130;
-      --text:       #d4c9b0;
+      --gold-dim: #7a6130;
+      --text: #d4c9b0;
       --text-muted: #7a7060;
-      --white:      #f0ead8;
+      --white: #f0ead8;
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       background-color: var(--black);
@@ -58,7 +69,9 @@
       border-bottom: 1px solid var(--border);
     }
 
-    section:last-child { border-bottom: none; }
+    section:last-child {
+      border-bottom: none;
+    }
 
     /* ── Header ── */
     header {
@@ -134,8 +147,13 @@
       margin-bottom: 0.3rem;
     }
 
-    p { margin-bottom: 1rem; }
-    p:last-child { margin-bottom: 0; }
+    p {
+      margin-bottom: 1rem;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
 
     /* ── About ── */
     .about-text {
@@ -158,9 +176,11 @@
       align-items: start;
     }
 
-    .role-row:last-child { border-bottom: none; }
+    .role-row:last-child {
+      border-bottom: none;
+    }
 
-    .role-left { }
+    .role-left {}
 
     .role-name {
       font-family: 'Cinzel', serif;
@@ -186,7 +206,9 @@
       margin-bottom: 2.5rem;
     }
 
-    .rules-block:last-child { margin-bottom: 0; }
+    .rules-block:last-child {
+      margin-bottom: 0;
+    }
 
     .rules-block h3 {
       font-size: 0.85rem;
@@ -209,7 +231,9 @@
       border-bottom: 1px solid var(--border);
     }
 
-    .rules-block ul li:last-child { border-bottom: none; }
+    .rules-block ul li:last-child {
+      border-bottom: none;
+    }
 
     .rules-block ul li::before {
       content: '—';
@@ -224,7 +248,9 @@
       border-bottom: 1px solid var(--border);
     }
 
-    .faq-item:last-child { border-bottom: none; }
+    .faq-item:last-child {
+      border-bottom: none;
+    }
 
     .faq-q {
       font-family: 'Cinzel', serif;
@@ -280,21 +306,44 @@
 
     /* ── Fade-in on load ── */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    header, section {
+    header,
+    section {
       animation: fadeUp 0.6s ease both;
     }
 
-    section:nth-child(2) { animation-delay: 0.1s; }
-    section:nth-child(3) { animation-delay: 0.2s; }
-    section:nth-child(4) { animation-delay: 0.3s; }
-    section:nth-child(5) { animation-delay: 0.4s; }
-    section:nth-child(6) { animation-delay: 0.5s; }
+    section:nth-child(2) {
+      animation-delay: 0.1s;
+    }
+
+    section:nth-child(3) {
+      animation-delay: 0.2s;
+    }
+
+    section:nth-child(4) {
+      animation-delay: 0.3s;
+    }
+
+    section:nth-child(5) {
+      animation-delay: 0.4s;
+    }
+
+    section:nth-child(6) {
+      animation-delay: 0.5s;
+    }
   </style>
 </head>
+
 <body>
 
   <header>
@@ -310,7 +359,11 @@
 
     <section id="about">
       <h2>About</h2>
-      <p class="about-text">Vanguard has Horde roots going back to Frostwolf, but the guild is now home to players of both factions. We're a social and leveling guild — relaxed, welcoming, and built around people who like having a community behind them without the demands of a progression guild. Whether you're returning after years away or just looking for a low-key place to land, you're welcome here.</p>
+      <p class="about-text">Vanguard was founded on Frostwolf at the onset of The Burning Crusade, a Horde raiding guild
+        that conquered every tier of content the expansion had to offer. After more than a decade of silence, it has
+        been restored by one of its founding officers. As of Midnight, Vanguard is rebuilding: a social and leveling
+        home with room to grow, or for some, a sealed artifact from a bygone era.</p>
+
     </section>
 
     <section id="roles">
@@ -354,7 +407,8 @@
             <div class="role-name">Evocatus</div>
             <div class="role-bracket">Returning Veteran</div>
           </div>
-          <div class="role-desc">Reserved for players who were part of Vanguard in a previous era and have come back. If you were here before, this rank is yours.</div>
+          <div class="role-desc">Reserved for players who were part of Vanguard in a previous era and have come back. If
+            you were here before, this rank is yours.</div>
         </div>
 
         <div class="role-row">
@@ -390,7 +444,8 @@
       <div class="rules-block">
         <h3>Conduct</h3>
         <ul>
-          <li>Treat guildmates with respect. We're here to have fun, not to be the fun police — but harassment, slurs, and sustained negativity aren't welcome.</li>
+          <li>Treat guildmates with respect. We're here to have fun, not to be the fun police — but harassment, slurs,
+            and sustained negativity aren't welcome.</li>
           <li>Drama stays out of guild chat. Handle personal conflicts privately.</li>
         </ul>
       </div>
@@ -418,22 +473,26 @@
 
       <div class="faq-item">
         <div class="faq-q">How do I join?</div>
-        <div class="faq-a">Whisper any online officer in-game, or reach out through our Discord. We don't have an application process — just say hello.</div>
+        <div class="faq-a">Whisper any online officer in-game, or reach out through our Discord. We don't have an
+          application process — just say hello.</div>
       </div>
 
       <div class="faq-item">
         <div class="faq-q">Is there a required activity level?</div>
-        <div class="faq-a">No. Play as much or as little as you want. We only ask that you give us a heads up if you're going to be away for an extended period.</div>
+        <div class="faq-a">No. Play as much or as little as you want. We only ask that you give us a heads up if you're
+          going to be away for an extended period.</div>
       </div>
 
       <div class="faq-item">
         <div class="faq-q">I used to be in Vanguard years ago. Do I have to start over?</div>
-        <div class="faq-a">No. Returning members are recognized with the Evocatus rank. Just let an officer know who you are.</div>
+        <div class="faq-a">No. Returning members are recognized with the Evocatus rank. Just let an officer know who you
+          are.</div>
       </div>
 
       <div class="faq-item">
         <div class="faq-q">Alliance or Horde?</div>
-        <div class="faq-a">Both. Vanguard is cross-faction. The guild has Horde roots but you're welcome regardless of what you play.</div>
+        <div class="faq-a">Both. Vanguard is cross-faction. The guild has Horde roots but you're welcome regardless of
+          what you play.</div>
       </div>
 
       <div class="faq-item">
@@ -445,16 +504,19 @@
 
     <section id="recruitment">
       <h2>Recruitment</h2>
-      <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem;">Copy and paste this into the in-game Guild Finder or trade chat.</p>
+      <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem;">Copy and paste this into the in-game
+        Guild Finder or trade chat.</p>
       <div class="blurb-box">
         <div class="blurb-label">Guild Ad</div>
         <div class="blurb-text">⚔ VANGUARD is recruiting ⚔
 
-Casual/social guild with Horde roots, now cross-faction. No raid requirements, no drama, no pressure — just a solid community to play alongside.
+          Casual/social guild with Horde roots, now cross-faction. No raid requirements, no drama, no pressure — just a
+          solid community to play alongside.
 
-Whether you're new to the server, returning after a break, or just tired of playing solo, we have a place for you. Former Vanguard members are especially welcome back.
+          Whether you're new to the server, returning after a break, or just tired of playing solo, we have a place for
+          you. Former Vanguard members are especially welcome back.
 
-Whisper any online officer or visit [YOUR DISCORD LINK] for more info.</div>
+          Whisper any online officer or visit [YOUR DISCORD LINK] for more info.</div>
       </div>
     </section>
 
@@ -467,4 +529,5 @@ Whisper any online officer or visit [YOUR DISCORD LINK] for more info.</div>
   </footer>
 
 </body>
+
 </html>
